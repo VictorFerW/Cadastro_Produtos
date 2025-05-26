@@ -10,7 +10,7 @@ public class TelaPrincipal extends JFrame {
 
     public TelaPrincipal() {
         setTitle("Sistema de Gestão de Estoque");
-        setSize(800, 600);
+        setSize(885, 653);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centralizar na tela
 
@@ -56,7 +56,7 @@ public class TelaPrincipal extends JFrame {
         labelBemVindo.setFont(new Font("Arial", Font.BOLD, 16));
         painelPrincipal.add(labelBemVindo, BorderLayout.CENTER);
 
-        add(painelPrincipal);
+        getContentPane().add(painelPrincipal);
 
         // --- Ações dos Menus (Exemplos básicos) ---
         itemProdutos.addActionListener(e -> abrirTelaGerenciarProdutos());
