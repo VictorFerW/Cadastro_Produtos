@@ -1,7 +1,5 @@
 package dao;
 
-<<<<<<< HEAD
-
 import modelo.Fornecedor;
 import modelo.Marca;
 import modelo.Produto;
@@ -9,22 +7,12 @@ import Config.ConexaoBD;
 
 import java.sql.*;
 import java.util.ArrayList;
-=======
-import modelo.Produto;
-import Config.ConexaoBD; // Importar conexão
-import java.sql.*; // Importar JDBC
-import java.util.ArrayList; // Importar List
->>>>>>> origin/Luan
 import java.util.List;
 
 public class ProdutoDAOImpl implements ProdutoDAO {
 
-<<<<<<< HEAD
-    // DAOs para buscar objetos relacionados (Categoria, Marca, Fornecedor)
-    // Idealmente, seriam injetados, mas para simplificar, vamos instanciar aqui
-   
-    private MarcaDAO marcaDAO = new MarcaDAOImpl(); // Precisa existir a implementação
-    private FornecedorDAO fornecedorDAO = new FornecedorDAOImpl(); // Precisa existir a implementação
+    private MarcaDAO marcaDAO = new MarcaDAOImpl();
+    private FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
 
     @Override
     public void salvar(Produto produto) throws Exception {
@@ -40,7 +28,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             pstmt.setString(2, produto.getDescricao());
             pstmt.setDouble(3, produto.getPrecoVenda());
             pstmt.setInt(4, produto.getQuantidadeEstoque());
-          
+            pstmt.setInt(5, produto.getCategoria().getId());
             pstmt.setInt(6, produto.getMarca().getId());
 
             if (produto.getFornecedorPadrao() != null) {
@@ -61,24 +49,11 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             throw new Exception("Erro ao salvar produto", e);
         } finally {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
-            // Não fechar conexão aqui
         }
-=======
-    // Aqui você precisa implementar TODOS os métodos definidos na interface ProdutoDAO
-    // (salvar, atualizar, excluir, buscarPorId, listarTodos, etc.)
-    // usando JDBC e SQL, similar ao que foi feito em CategoriaDAOImpl.
-
-    @Override
-    public void salvar(Produto produto) throws Exception {
-        // TODO: Implementar lógica SQL para INSERT
-        System.out.println("Método salvar ProdutoDAOImpl ainda não implementado.");
-        throw new UnsupportedOperationException("Not supported yet.");
->>>>>>> origin/Luan
     }
 
     @Override
     public void atualizar(Produto produto) throws Exception {
-<<<<<<< HEAD
         String sql = "UPDATE produtos SET nome = ?, descricao = ?, preco_venda = ?, quantidade_estoque = ?, categoria_id = ?, marca_id = ?, fornecedor_padrao_id = ? WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -91,6 +66,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             pstmt.setString(2, produto.getDescricao());
             pstmt.setDouble(3, produto.getPrecoVenda());
             pstmt.setInt(4, produto.getQuantidadeEstoque());
+            pstmt.setInt(5, produto.getCategoria().getId());
             pstmt.setInt(6, produto.getMarca().getId());
 
             if (produto.getFornecedorPadrao() != null) {
@@ -112,9 +88,6 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 
     @Override
     public void excluir(int id) throws Exception {
-        // Atenção: Verificar se o produto está em uso em entradas_estoque antes de excluir,
-        // ou tratar a exceção de chave estrangeira se a exclusão falhar.
-        // A constraint ON DELETE CASCADE na tabela entradas_estoque cuidará disso se configurada.
         String sql = "DELETE FROM produtos WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -125,39 +98,15 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-             // Verificar erro específico de FK se necessário (ex: se ON DELETE CASCADE não estiver ativo)
             System.err.println("Erro ao excluir produto: " + e.getMessage());
             throw new Exception("Erro ao excluir produto", e);
         } finally {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
-=======
-        // TODO: Implementar lógica SQL para UPDATE
-         System.out.println("Método atualizar ProdutoDAOImpl ainda não implementado.");
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    // ... Implementar os outros métodos da interface ProdutoDAO ...
-
-    @Override
-    public List<Produto> listarTodos() throws Exception {
-         System.out.println("Método listarTodos ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
-         // return new ArrayList<>(); // Retornar lista vazia temporariamente
-    }
-
-    // ... etc ...
-
-    @Override
-    public void atualizarEstoque(int produtoId, int novaQuantidade) throws Exception {
-         System.out.println("Método atualizarEstoque ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
->>>>>>> origin/Luan
     }
 
     @Override
     public Produto buscarPorId(int id) throws Exception {
-<<<<<<< HEAD
         String sql = "SELECT * FROM produtos WHERE id = ?";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -207,15 +156,10 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
         return produtos;
-=======
-         System.out.println("Método buscarPorId ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
->>>>>>> origin/Luan
     }
 
     @Override
     public List<Produto> buscarPorNome(String nome) throws Exception {
-<<<<<<< HEAD
         String sql = "SELECT * FROM produtos WHERE nome LIKE ? ORDER BY nome";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -239,15 +183,10 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
         return produtos;
-=======
-         System.out.println("Método buscarPorNome ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
->>>>>>> origin/Luan
     }
 
     @Override
     public List<Produto> listarPorCategoria(int categoriaId) throws Exception {
-<<<<<<< HEAD
         String sql = "SELECT * FROM produtos WHERE categoria_id = ? ORDER BY nome";
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -271,17 +210,12 @@ public class ProdutoDAOImpl implements ProdutoDAO {
             if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
         return produtos;
-=======
-         System.out.println("Método listarPorCategoria ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
->>>>>>> origin/Luan
     }
 
     @Override
     public List<Produto> listarPorMarca(int marcaId) throws Exception {
-<<<<<<< HEAD
         String sql = "SELECT * FROM produtos WHERE marca_id = ? ORDER BY nome";
-         Connection conn = null;
+        Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         List<Produto> produtos = new ArrayList<>();
@@ -325,7 +259,6 @@ public class ProdutoDAOImpl implements ProdutoDAO {
         }
     }
 
-    // Método auxiliar para mapear um ResultSet para um objeto Produto
     private Produto mapRowToProduto(ResultSet rs) throws Exception {
         Produto produto = new Produto();
         produto.setId(rs.getInt("id"));
@@ -334,19 +267,12 @@ public class ProdutoDAOImpl implements ProdutoDAO {
         produto.setPrecoVenda(rs.getDouble("preco_venda"));
         produto.setQuantidadeEstoque(rs.getInt("quantidade_estoque"));
 
-        // Buscar objetos relacionados usando seus DAOs
-       
-
         int marcaId = rs.getInt("marca_id");
-        // Criar MarcaDAOImpl se não existir
-        if (marcaDAO == null) marcaDAO = new MarcaDAOImpl();
         Marca marca = marcaDAO.buscarPorId(marcaId);
         produto.setMarca(marca);
 
         int fornecedorId = rs.getInt("fornecedor_padrao_id");
-        if (!rs.wasNull()) { // Verifica se o fornecedor_id não era NULL no banco
-             // Criar FornecedorDAOImpl se não existir
-            if (fornecedorDAO == null) fornecedorDAO = new FornecedorDAOImpl();
+        if (!rs.wasNull()) {
             Fornecedor fornecedor = fornecedorDAO.buscarPorId(fornecedorId);
             produto.setFornecedorPadrao(fornecedor);
         } else {
@@ -356,16 +282,3 @@ public class ProdutoDAOImpl implements ProdutoDAO {
         return produto;
     }
 }
-
-=======
-         System.out.println("Método listarPorMarca ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void excluir(int id) throws Exception {
-         System.out.println("Método excluir ProdutoDAOImpl ainda não implementado.");
-         throw new UnsupportedOperationException("Not supported yet.");
-    }
-}
->>>>>>> origin/Luan
