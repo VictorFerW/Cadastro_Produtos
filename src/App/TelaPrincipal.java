@@ -73,9 +73,8 @@ public class TelaPrincipal extends JFrame {
 
     // Métodos para abrir as outras telas (precisam ser implementados)
     private void abrirTelaGerenciarProdutos() {
-        // Exemplo: Criar e exibir um JPanel ou JInternalFrame para produtos
-        JOptionPane.showMessageDialog(this, "Funcionalidade Gerenciar Produtos ainda não implementada.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-        // new TelaGerenciarProdutos(this).setVisible(true); // Se for JDialog
+       
+         new TelaGerenciarProdutos(this).setVisible(true); // Se for JDialog
     }
 
    
