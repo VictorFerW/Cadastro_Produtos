@@ -10,7 +10,11 @@ public class TelaPrincipal extends JFrame {
 
     public TelaPrincipal() {
         setTitle("Sistema de Gestão de Estoque");
+<<<<<<< HEAD
         setSize(800, 600);
+=======
+        setSize(885, 653);
+>>>>>>> origin/Luan
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centralizar na tela
 
@@ -56,7 +60,11 @@ public class TelaPrincipal extends JFrame {
         labelBemVindo.setFont(new Font("Arial", Font.BOLD, 16));
         painelPrincipal.add(labelBemVindo, BorderLayout.CENTER);
 
+<<<<<<< HEAD
         add(painelPrincipal);
+=======
+        getContentPane().add(painelPrincipal);
+>>>>>>> origin/Luan
 
         // --- Ações dos Menus (Exemplos básicos) ---
         itemProdutos.addActionListener(e -> abrirTelaGerenciarProdutos());
@@ -73,8 +81,14 @@ public class TelaPrincipal extends JFrame {
 
     // Métodos para abrir as outras telas (precisam ser implementados)
     private void abrirTelaGerenciarProdutos() {
+<<<<<<< HEAD
        
          new TelaGerenciarProdutos(this).setVisible(true); // Se for JDialog
+=======
+        // Exemplo: Criar e exibir um JPanel ou JInternalFrame para produtos
+        JOptionPane.showMessageDialog(this, "Funcionalidade Gerenciar Produtos ainda não implementada.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        // new TelaGerenciarProdutos(this).setVisible(true); // Se for JDialog
+>>>>>>> origin/Luan
     }
 
    

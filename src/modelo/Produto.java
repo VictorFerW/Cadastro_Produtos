@@ -6,6 +6,10 @@ public class Produto {
     private String descricao;
     private double precoVenda;
     private int quantidadeEstoque;
+<<<<<<< HEAD
+=======
+    private Categoria categoria;
+>>>>>>> origin/Luan
     private Marca marca;
     private Fornecedor fornecedorPadrao; // Pode ser nulo
 
@@ -15,13 +19,21 @@ public class Produto {
 
     // Construtor com parâmetros (exemplo)
     public Produto(int id, String nome, String descricao, double precoVenda, int quantidadeEstoque,
+<<<<<<< HEAD
                     Marca marca, Fornecedor fornecedorPadrao) {
+=======
+                   Categoria categoria, Marca marca, Fornecedor fornecedorPadrao) {
+>>>>>>> origin/Luan
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.precoVenda = precoVenda;
         this.quantidadeEstoque = quantidadeEstoque;
+<<<<<<< HEAD
         
+=======
+        this.categoria = categoria;
+>>>>>>> origin/Luan
         this.marca = marca;
         this.fornecedorPadrao = fornecedorPadrao;
     }
@@ -67,7 +79,17 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
+<<<<<<< HEAD
    
+=======
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+>>>>>>> origin/Luan
 
     public Marca getMarca() {
         return marca;
