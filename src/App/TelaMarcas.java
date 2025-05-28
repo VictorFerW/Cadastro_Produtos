@@ -95,13 +95,6 @@ public class TelaMarcas {
 		lblNewLabel_3_4.setBounds(43, 404, 116, 34);
 		panel.add(lblNewLabel_3_4);
 		
-		JLabel lblNewLabel_3_5 = new JLabel("Feedback");
-		lblNewLabel_3_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_5.setForeground(Color.WHITE);
-		lblNewLabel_3_5.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_5.setBounds(43, 449, 116, 34);
-		panel.add(lblNewLabel_3_5);
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(212, 0, 778, 109);
 		panel_1.setBackground(new Color(111, 111, 111));
