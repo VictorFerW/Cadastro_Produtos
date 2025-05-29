@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JToolBar;
 import javax.xml.validation.Schema;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -59,53 +60,74 @@ public class TelaPrincipal {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("Produtos");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(43, 224, 116, 34);
-		panel.add(lblNewLabel_3);
+		JButton btnNewButton_2 = new JButton("Produtos");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBackground(new Color(39, 66, 88));
+		btnNewButton_2.setForeground(new Color(39, 66, 88));
+		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_2.setBounds(40, 264, 125, 35);
+		panel.add(btnNewButton_2);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Entradas");
-		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_1.setForeground(Color.WHITE);
-		lblNewLabel_3_1.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_1.setBounds(43, 269, 116, 34);
-		panel.add(lblNewLabel_3_1);
+		JButton btnNewButton_2_1 = new JButton("Entrada");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2_1.setForeground(new Color(39, 66, 88));
+		btnNewButton_2_1.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_2_1.setBackground(new Color(39, 66, 88));
+		btnNewButton_2_1.setBounds(40, 310, 125, 35);
+		panel.add(btnNewButton_2_1);
 		
-		JLabel lblNewLabel_3_2 = new JLabel("Saidas");
-		lblNewLabel_3_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_2.setForeground(Color.WHITE);
-		lblNewLabel_3_2.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_2.setBounds(43, 314, 116, 34);
-		panel.add(lblNewLabel_3_2);
+		JButton btnNewButton_2_2 = new JButton("Saida");
+		btnNewButton_2_2.setForeground(new Color(39, 66, 88));
+		btnNewButton_2_2.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_2_2.setBackground(new Color(39, 66, 88));
+		btnNewButton_2_2.setBounds(40, 356, 125, 35);
+		panel.add(btnNewButton_2_2);
 		
-		JLabel lblNewLabel_3_3 = new JLabel("Fornecedores");
-		lblNewLabel_3_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_3.setForeground(Color.WHITE);
-		lblNewLabel_3_3.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_3.setBounds(43, 359, 134, 34);
-		panel.add(lblNewLabel_3_3);
+		JButton btnNewButton_2_2_1 = new JButton("Fornecedor ");
+		btnNewButton_2_2_1.setForeground(new Color(39, 66, 88));
+		btnNewButton_2_2_1.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_2_2_1.setBackground(new Color(39, 66, 88));
+		btnNewButton_2_2_1.setBounds(40, 402, 125, 35);
+		panel.add(btnNewButton_2_2_1);
 		
-		JLabel lblNewLabel_3_4 = new JLabel("Marcas");
-		lblNewLabel_3_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_4.setForeground(Color.WHITE);
-		lblNewLabel_3_4.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_4.setBounds(43, 404, 116, 34);
-		panel.add(lblNewLabel_3_4);
+		JButton btnNewButton_2_2_2 = new JButton("Marca");
+		btnNewButton_2_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2_2_2.setForeground(new Color(39, 66, 88));
+		btnNewButton_2_2_2.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_2_2_2.setBackground(new Color(39, 66, 88));
+		btnNewButton_2_2_2.setBounds(40, 448, 125, 35);
+		panel.add(btnNewButton_2_2_2);
 		
-		JLabel lblNewLabel_3_5 = new JLabel("Feedback");
-		lblNewLabel_3_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3_5.setForeground(Color.WHITE);
-		lblNewLabel_3_5.setFont(new Font("Arial", Font.BOLD, 18));
-		lblNewLabel_3_5.setBounds(43, 449, 116, 34);
-		panel.add(lblNewLabel_3_5);
+		JPanel panel_5 = new JPanel();
+		panel_5.setBackground(new Color(255, 255, 255));
+		panel_5.setBounds(40, 45, 125, 122);
+		panel.add(panel_5);
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_2 = new JLabel("Exemplo");
+		lblNewLabel_2.setBounds(32, 53, 61, 18);
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 15));
+		panel_5.add(lblNewLabel_2);
+		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBounds(10, 192, 192, 1);
+		panel.add(panel_6);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(212, 0, 778, 109);
 		panel_1.setBackground(new Color(111, 111, 111));
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
+		
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Estoque AV2");
 		lblNewLabel_2_2.setBackground(new Color(240, 240, 240));

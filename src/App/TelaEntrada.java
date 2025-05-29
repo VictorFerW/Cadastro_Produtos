@@ -83,6 +83,8 @@ public class TelaEntrada {
 		JButton btnNewButton_2 = new JButton("Produtos");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+                TelaProdutos tela = new TelaProdutos();
+                tela.setVisible(true);
 			}
 		});
 		btnNewButton_2.setBackground(new Color(39, 66, 88));
