@@ -166,6 +166,11 @@ public class TelaPrincipal {
 		lblNewLabel.setBounds(10, 124, 175, 51);
 		panel_2.add(lblNewLabel);
 		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(new Color(151, 0, 4));
+		panel_3.setBounds(30, 11, 137, 78);
+		panel_2.add(panel_3);
+		
 		JPanel panel_2_1 = new JPanel();
 		panel_2_1.setBounds(509, 255, 195, 175);
 		frame.getContentPane().add(panel_2_1);
@@ -189,6 +194,11 @@ public class TelaPrincipal {
 		lblNewLabel_1.setBounds(10, 124, 175, 51);
 		panel_2_1.add(lblNewLabel_1);
 		
+		JPanel panel_3_1 = new JPanel();
+		panel_3_1.setBackground(new Color(14, 106, 0));
+		panel_3_1.setBounds(30, 11, 137, 78);
+		panel_2_1.add(panel_3_1);
+		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setBounds(768, 255, 195, 175);
 		frame.getContentPane().add(panel_2_2);
@@ -207,6 +217,11 @@ public class TelaPrincipal {
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_1_1.setBounds(10, 124, 175, 51);
 		panel_2_2.add(lblNewLabel_1_1);
+		
+		JPanel panel_3_2 = new JPanel();
+		panel_3_2.setBackground(new Color(16, 46, 90));
+		panel_3_2.setBounds(30, 11, 137, 78);
+		panel_2_2.add(panel_3_2);
 		
 		JPanel panel_2_3 = new JPanel();
 		panel_2_3.setLayout(null);
@@ -227,6 +242,11 @@ public class TelaPrincipal {
 		lblGerenciarFornecedores.setFont(new Font("Arial", Font.BOLD, 12));
 		lblGerenciarFornecedores.setBounds(10, 124, 175, 51);
 		panel_2_3.add(lblGerenciarFornecedores);
+		
+		JPanel panel_3_3 = new JPanel();
+		panel_3_3.setBackground(new Color(151, 0, 4));
+		panel_3_3.setBounds(30, 11, 137, 78);
+		panel_2_3.add(panel_3_3);
 		
 		JPanel panel_2_1_1 = new JPanel();
 		panel_2_1_1.setLayout(null);
@@ -251,6 +271,11 @@ public class TelaPrincipal {
 		lblNewLabel_1_2.setBounds(10, 124, 175, 51);
 		panel_2_1_1.add(lblNewLabel_1_2);
 		
+		JPanel panel_3_4 = new JPanel();
+		panel_3_4.setBackground(new Color(14, 106, 0));
+		panel_3_4.setBounds(30, 11, 137, 78);
+		panel_2_1_1.add(panel_3_4);
+		
 		JPanel panel_2_2_1 = new JPanel();
 		panel_2_2_1.setLayout(null);
 		panel_2_2_1.setBounds(768, 480, 195, 175);
@@ -273,6 +298,11 @@ public class TelaPrincipal {
 		lblNewLabel_1_1_1.setFont(new Font("Arial", Font.BOLD, 12));
 		lblNewLabel_1_1_1.setBounds(10, 124, 175, 51);
 		panel_2_2_1.add(lblNewLabel_1_1_1);
+		
+		JPanel panel_3_5 = new JPanel();
+		panel_3_5.setBackground(new Color(16, 46, 90));
+		panel_3_5.setBounds(30, 14, 137, 78);
+		panel_2_2_1.add(panel_3_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("Bem-vindo!");
 		lblNewLabel_2.setForeground(new Color(0, 0, 0));
