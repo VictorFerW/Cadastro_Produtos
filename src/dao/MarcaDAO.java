@@ -3,6 +3,7 @@ package dao;
 import modelo.Marca;
 import java.util.List;
 
+// Interface para operações CRUD de Marcas
 public interface MarcaDAO {
     void salvar(Marca marca) throws Exception;
     void atualizar(Marca marca) throws Exception;
@@ -11,4 +12,3 @@ public interface MarcaDAO {
     List<Marca> listarTodas() throws Exception;
     List<Marca> buscarPorNome(String nome) throws Exception;
 }
-

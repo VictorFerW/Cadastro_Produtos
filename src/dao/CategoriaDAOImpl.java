@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriaDAOImpl implements CategoriaDAO {
+public class CategoriaDAOImpl implements CategoriaDAO, SimpleDAO<Categoria> {
 
     @Override
     public void salvar(Categoria categoria) throws Exception {
@@ -21,7 +21,6 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             pstmt.setString(1, categoria.getNome());
             pstmt.executeUpdate();
 
-            // Recuperar o ID gerado (opcional, mas útil)
             ResultSet rs = pstmt.getGeneratedKeys();
             if (rs.next()) {
                 categoria.setId(rs.getInt(1));
@@ -29,19 +28,9 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 
         } catch (SQLException e) {
             System.err.println("Erro ao salvar categoria: " + e.getMessage());
-            // Lançar exceção para a camada superior tratar
             throw new Exception("Erro ao salvar categoria", e);
         } finally {
-            // Fechar PreparedStatement (ResultSet é fechado automaticamente com PreparedStatement)
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    System.err.println("Erro ao fechar PreparedStatement: " + e.getMessage());
-                }
-            }
-            // Não fechar a conexão aqui se for gerenciada externamente ou reutilizada
-            // ConexaoBD.closeConnection();
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
     }
 
@@ -61,13 +50,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             System.err.println("Erro ao atualizar categoria: " + e.getMessage());
             throw new Exception("Erro ao atualizar categoria", e);
         } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    System.err.println("Erro ao fechar PreparedStatement: " + e.getMessage());
-                }
-            }
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
         }
     }
 
@@ -83,21 +66,14 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            // Verificar erro de chave estrangeira (se categorias são usadas em produtos)
-            if (e.getErrorCode() == 1451) { // Código de erro específico do MySQL para FK constraint
+            if (e.getErrorCode() == 1451) { 
                  System.err.println("Erro ao excluir categoria: Categoria está em uso por produtos.");
                  throw new Exception("Erro ao excluir categoria: Categoria está em uso por produtos.", e);
             }
             System.err.println("Erro ao excluir categoria: " + e.getMessage());
             throw new Exception("Erro ao excluir categoria", e);
         } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    System.err.println("Erro ao fechar PreparedStatement: " + e.getMessage());
-                }
-            }
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {  }
         }
     }
 
@@ -124,8 +100,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             System.err.println("Erro ao buscar categoria por ID: " + e.getMessage());
             throw new Exception("Erro ao buscar categoria por ID", e);
         } finally {
-            if (rs != null) try { rs.close(); } catch (SQLException e) { /* Ignorar */ }
-            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
+            if (rs != null) try { rs.close(); } catch (SQLException e) {  }
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {  }
         }
         return categoria;
     }
@@ -153,8 +129,8 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             System.err.println("Erro ao listar categorias: " + e.getMessage());
             throw new Exception("Erro ao listar categorias", e);
         } finally {
-            if (rs != null) try { rs.close(); } catch (SQLException e) { /* Ignorar */ }
-            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
+            if (rs != null) try { rs.close(); } catch (SQLException e) {  }
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {  }
         }
         return categorias;
     }
@@ -170,7 +146,7 @@ public class CategoriaDAOImpl implements CategoriaDAO {
         try {
             conn = ConexaoBD.getConnection();
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, "%" + nome + "%"); // Busca por parte do nome
+            pstmt.setString(1, "%" + nome + "%");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -183,10 +159,9 @@ public class CategoriaDAOImpl implements CategoriaDAO {
             System.err.println("Erro ao buscar categorias por nome: " + e.getMessage());
             throw new Exception("Erro ao buscar categorias por nome", e);
         } finally {
-            if (rs != null) try { rs.close(); } catch (SQLException e) { /* Ignorar */ }
-            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) { /* Ignorar */ }
+            if (rs != null) try { rs.close(); } catch (SQLException e) {  }
+            if (pstmt != null) try { pstmt.close(); } catch (SQLException e) {  }
         }
         return categorias;
     }
 }
-

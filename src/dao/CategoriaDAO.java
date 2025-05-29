@@ -11,4 +11,3 @@ public interface CategoriaDAO {
     List<Categoria> listarTodas() throws Exception;
     List<Categoria> buscarPorNome(String nome) throws Exception;
 }
-

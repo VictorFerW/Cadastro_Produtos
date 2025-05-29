@@ -1,42 +1,52 @@
 package modelo;
 
-public class Categoria {
+public class Categoria implements SimpleModel {
     private int id;
     private String nome;
 
-    // Construtor padrão
     public Categoria() {
     }
 
-    // Construtor com parâmetros
     public Categoria(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    // Getters e Setters
+    @Override
     public int getId() {
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     @Override
     public String toString() {
-        // Útil para exibir em ComboBoxes
-        return nome;
+        return nome != null ? nome : ""; 
     }
 
-    // Implementar equals() e hashCode() se for usar coleções como HashSet/HashMap
-}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Categoria categoria = (Categoria) o;
+        return id == categoria.id;
+    }
 
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+}

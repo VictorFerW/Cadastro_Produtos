@@ -1,53 +1,51 @@
 package App;
 
-import dao.*; // Importar DAOs necessários
-import modelo.*; // Importar modelos necessários
+import dao.*; 
+import modelo.*; 
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List; // Para popular ComboBoxes
+import java.util.List; 
 
-// Exemplo básico de Tela de Cadastro de Produto (JDialog)
 public class TelaCadastroProduto extends JDialog {
 
     private JTextField txtNome;
-    private JTextArea txtDescricao; // Usar JTextArea para descrição mais longa
+    private JTextArea txtDescricao; 
     private JTextField txtPrecoVenda;
     private JTextField txtQuantidadeEstoque;
-   
+    private JComboBox<Categoria> cbCategoria;
     private JComboBox<Marca> cbMarca;
     private JComboBox<Fornecedor> cbFornecedorPadrao;
 
     private JButton btnSalvar;
     private JButton btnCancelar;
 
-    private Produto produtoAtual; // Para edição
-    private ProdutoDAO produtoDAO; // Instância do DAO
-    // DAOs para popular ComboBoxes
-   
+    private Produto produtoAtual; 
+    private ProdutoDAO produtoDAO; 
+    private CategoriaDAO categoriaDAO;
     private MarcaDAO marcaDAO;
     private FornecedorDAO fornecedorDAO;
 
-    // Construtor para Novo Produto
+    
     public TelaCadastroProduto(Frame owner) {
         this(owner, null);
     }
 
-    // Construtor para Editar Produto
+    
     public TelaCadastroProduto(Frame owner, Produto produtoParaEditar) {
-        super(owner, "Cadastro de Produto", true); // Modal
+        super(owner, "Cadastro de Produto", true); 
         this.produtoAtual = produtoParaEditar;
-        // Inicializar DAOs (idealmente injetados ou obtidos de uma fábrica/serviço)
-        this.produtoDAO = new ProdutoDAOImpl(); // Exemplo, criar implementação
-        
-        this.marcaDAO = new MarcaDAOImpl(); // Exemplo, criar implementação
-        this.fornecedorDAO = new FornecedorDAOImpl(); // Exemplo, criar implementação
+       
+        this.produtoDAO = new ProdutoDAOImpl(); 
+        this.categoriaDAO = new CategoriaDAOImpl(); 
+        this.marcaDAO = new MarcaDAOImpl(); 
+        this.fornecedorDAO = new FornecedorDAOImpl();
 
         setSize(500, 450);
         setLocationRelativeTo(owner);
-        setLayout(new BorderLayout(10, 10)); // Layout principal com espaçamento
+        setLayout(new BorderLayout(10, 10)); 
 
         initComponents();
         popularComboBoxes();
@@ -57,17 +55,15 @@ public class TelaCadastroProduto extends JDialog {
             carregarDadosProduto();
         }
 
-        pack(); // Ajusta o tamanho da janela aos componentes
+        pack(); 
     }
 
     private void initComponents() {
-        // Painel para os campos de entrada
         JPanel painelCampos = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Espaçamento
+        gbc.insets = new Insets(5, 5, 5, 5); 
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Labels e Campos
         gbc.gridx = 0; gbc.gridy = 0; painelCampos.add(new JLabel("Nome:"), gbc);
         gbc.gridx = 1; gbc.gridy = 0; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
         txtNome = new JTextField(20);
@@ -92,6 +88,11 @@ public class TelaCadastroProduto extends JDialog {
         txtQuantidadeEstoque = new JTextField(5);
         painelCampos.add(txtQuantidadeEstoque, gbc);
 
+        gbc.gridx = 0; gbc.gridy = 4; gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0;
+        painelCampos.add(new JLabel("Categoria:"), gbc);
+        gbc.gridx = 1; gbc.gridy = 4; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
+        cbCategoria = new JComboBox<>();
+        painelCampos.add(cbCategoria, gbc);
 
         gbc.gridx = 0; gbc.gridy = 5; gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0;
         painelCampos.add(new JLabel("Marca:"), gbc);
@@ -103,37 +104,34 @@ public class TelaCadastroProduto extends JDialog {
         painelCampos.add(new JLabel("Fornecedor Padrão:"), gbc);
         gbc.gridx = 1; gbc.gridy = 6; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
         cbFornecedorPadrao = new JComboBox<>();
-        cbFornecedorPadrao.addItem(null); // Permitir fornecedor nulo
+        cbFornecedorPadrao.addItem(null); 
         painelCampos.add(cbFornecedorPadrao, gbc);
 
-        // Painel para os botões
         JPanel painelBotoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         btnSalvar = new JButton("Salvar");
         btnCancelar = new JButton("Cancelar");
         painelBotoes.add(btnSalvar);
         painelBotoes.add(btnCancelar);
 
-        // Adicionar painéis ao diálogo
         add(painelCampos, BorderLayout.CENTER);
         add(painelBotoes, BorderLayout.SOUTH);
 
-        // --- Ações dos Botões ---
         btnSalvar.addActionListener(e -> salvarProduto());
         btnCancelar.addActionListener(e -> dispose()); // Fecha o diálogo
     }
 
     private void popularComboBoxes() {
         try {
-            // Popular Categoria
-         
+            List<Categoria> categorias = categoriaDAO.listarTodas();
+            for (Categoria cat : categorias) {
+                cbCategoria.addItem(cat);
+            }
 
-            // Popular Marca
             List<Marca> marcas = marcaDAO.listarTodas();
             for (Marca marca : marcas) {
                 cbMarca.addItem(marca);
             }
 
-            // Popular Fornecedor
             List<Fornecedor> fornecedores = fornecedorDAO.listarTodos();
             for (Fornecedor forn : fornecedores) {
                 cbFornecedorPadrao.addItem(forn);
@@ -141,7 +139,7 @@ public class TelaCadastroProduto extends JDialog {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados para seleção: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); // Logar o erro
+            e.printStackTrace(); 
         }
     }
 
@@ -151,15 +149,15 @@ public class TelaCadastroProduto extends JDialog {
             txtDescricao.setText(produtoAtual.getDescricao());
             txtPrecoVenda.setText(String.valueOf(produtoAtual.getPrecoVenda()));
             txtQuantidadeEstoque.setText(String.valueOf(produtoAtual.getQuantidadeEstoque()));
-            cbMarca.setSelectedItem(produtoAtual.getMarca()); // Requer equals() implementado em Marca
-            cbFornecedorPadrao.setSelectedItem(produtoAtual.getFornecedorPadrao()); // Requer equals() implementado em Fornecedor
+            cbCategoria.setSelectedItem(produtoAtual.getCategoria()); 
+            cbMarca.setSelectedItem(produtoAtual.getMarca()); 
+            cbFornecedorPadrao.setSelectedItem(produtoAtual.getFornecedorPadrao()); 
         }
     }
 
     private void salvarProduto() {
-        // Validação básica (melhorar conforme necessário)
-        if (txtNome.getText().trim().isEmpty() ||  cbMarca.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Nome e Marca são obrigatórios.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
+        if (txtNome.getText().trim().isEmpty() || cbCategoria.getSelectedItem() == null || cbMarca.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Nome, Categoria e Marca são obrigatórios.", "Erro de Validação", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -172,25 +170,25 @@ public class TelaCadastroProduto extends JDialog {
             produto.setDescricao(txtDescricao.getText().trim());
             produto.setPrecoVenda(preco);
             produto.setQuantidadeEstoque(qtd);
-           
+            produto.setCategoria((Categoria) cbCategoria.getSelectedItem());
             produto.setMarca((Marca) cbMarca.getSelectedItem());
             produto.setFornecedorPadrao((Fornecedor) cbFornecedorPadrao.getSelectedItem());
 
-            if (produtoAtual == null) { // Novo produto
+            if (produtoAtual == null) { 
                 produtoDAO.salvar(produto);
                 JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            } else { // Editar produto
+            } else { 
                 produtoDAO.atualizar(produto);
                 JOptionPane.showMessageDialog(this, "Produto atualizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
 
-            dispose(); // Fecha o diálogo após salvar
+            dispose(); 
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Preço e Quantidade devem ser números válidos.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao salvar produto: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace(); // Logar o erro
+            ex.printStackTrace(); 
         }
     }
 }
