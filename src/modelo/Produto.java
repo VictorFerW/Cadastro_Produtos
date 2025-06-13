@@ -7,6 +7,7 @@ public class Produto {
     private double precoVenda;
     private int quantidadeEstoque;
     private Marca marca;
+    private Categoria categoria;
     private Fornecedor fornecedorPadrao; // Pode ser nulo
 
     // Construtor padrão
@@ -67,7 +68,13 @@ public class Produto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-   
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public Marca getMarca() {
         return marca;

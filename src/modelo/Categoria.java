@@ -1,21 +1,17 @@
 package modelo;
 
-// Adicione "implements SimpleModel" aqui
-public class Marca implements SimpleModel {
+public class Categoria implements SimpleModel {
     private int id;
     private String nome;
 
-    // Construtor padrão (necessário para TelaGerenciarSimples)
-    public Marca() {
+    public Categoria() {
     }
 
-    // Construtor com parâmetros (opcional)
-    public Marca(int id, String nome) {
+    public Categoria(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    // --- Métodos da interface SimpleModel --- 
     @Override
     public int getId() {
         return id;
@@ -35,21 +31,18 @@ public class Marca implements SimpleModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    // --- Fim dos métodos da interface ---
-    
-    // toString é útil para ComboBoxes e listas
+
     @Override
     public String toString() {
         return nome != null ? nome : ""; 
     }
-    
-    // Implementar equals() e hashCode() é uma boa prática se usar Marcas em Coleções (Set, Map)
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Marca marca = (Marca) o;
-        return id == marca.id;
+        Categoria categoria = (Categoria) o;
+        return id == categoria.id;
     }
 
     @Override
